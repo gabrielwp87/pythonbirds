@@ -18,3 +18,9 @@ if __name__ == '__main__':
     print(fernando.idade)
     for filho in fernando.filhos:
         print(filho.nome)
+    fernando.sobrenome = 'Piazenski' #atributo adicionado dinamicamente
+    print(fernando.sobrenome)
+    print(fernando.__dict__)
+    print(gabriel.__dict__)
+    del fernando.filhos # remoção dinâmica de atributo
+    print(fernando.__dict__)
