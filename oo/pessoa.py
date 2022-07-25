@@ -10,9 +10,21 @@ class Pessoa:
     def cumprimentar(self):
         return f'Olá {id(self)}'
 
+    @staticmethod
+    def metodo_estatico():
+        return 42
+
+class Homem(Pessoa):
+    pass
+
+
 if __name__ == '__main__':
-    gabriel = Pessoa(nome='Gabriel')
-    natalia = Pessoa(nome='Natália')
+    gabriel = Homem(nome='Gabriel')
+    # Foi alterado o tipo do objeto, de Pessoa para Homem, mas como foi utlizado o método herânca a classe filho (Homem)
+    # apresenta todos os atributos (sentido amplo - atributos de dados e métodos) da classe pai, por isso não deve ocorrer
+    # nenhum problema com essa alteração de objeto.
+
+    natalia = Pessoa(nome='Natália') # Poderia ser trocado o objeto, de Pessoa para Homem, aqui também
     fernando = Pessoa(gabriel, natalia, nome='Fernando')
     print(Pessoa.cumprimentar(fernando))
     print(id(fernando))
@@ -66,3 +78,13 @@ if __name__ == '__main__':
     print(fernando.olhos)
     print(gabriel.olhos)
     print(id(Pessoa.olhos), id(fernando.olhos), id(gabriel.olhos))
+
+    print()
+    print('Teste do is instance') # serve para sabe se um ojbeto é de determinado tipo/classe
+    pessoa = Pessoa('Anônimo')
+    print(isinstance(pessoa, Pessoa))
+    print(isinstance(pessoa, Homem))
+    print(isinstance(gabriel, Homem))
+    print(isinstance(fernando, Homem))
+    print(isinstance(gabriel, Pessoa))
+    print(isinstance(fernando, Pessoa))
