@@ -14,12 +14,19 @@ class Pessoa:
     def metodo_estatico():
         return 42
 
+    @classmethod
+    def nome_e_atributos_de_classe(cls):
+        return f'{cls}  - olhos {cls.olhos}'
+
 class Homem(Pessoa):
     pass
 
+class Mutante(Pessoa):
+    olhos = 3 # como esse atributo já existe na classe pai, há uma sobrescrita de atributo
+
 
 if __name__ == '__main__':
-    gabriel = Homem(nome='Gabriel')
+    gabriel = Mutante(nome='Gabriel')
     # Foi alterado o tipo do objeto, de Pessoa para Homem, mas como foi utlizado o método herânca a classe filho (Homem)
     # apresenta todos os atributos (sentido amplo - atributos de dados e métodos) da classe pai, por isso não deve ocorrer
     # nenhum problema com essa alteração de objeto.
@@ -59,7 +66,7 @@ if __name__ == '__main__':
 
     print()
     print('Trocando o valor de olhos para todas as pessoas.')
-    Pessoa.olhos = 3 # aqui está se alterando o valor do atributo de classe, o que afeta todas os objetos que
+    # Pessoa.olhos = 3 # aqui está se alterando o valor do atributo de classe, o que afeta todas os objetos que
                      # não foram alterados de forma particular como acima.
     print(gabriel.__dict__)
     print(fernando.__dict__)
@@ -88,3 +95,7 @@ if __name__ == '__main__':
     print(isinstance(fernando, Homem))
     print(isinstance(gabriel, Pessoa))
     print(isinstance(fernando, Pessoa))
+
+    print()
+    print('Parte sobre sobrescrita de atributos')
+    print(gabriel.olhos)
