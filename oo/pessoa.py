@@ -8,7 +8,7 @@ class Pessoa:
         self.filhos = list(filhos)
 
     def cumprimentar(self):
-        return f'Olá {id(self)}'
+        return f'Olá meu nome é {self.nome}'
 
     @staticmethod
     def metodo_estatico():
@@ -19,7 +19,12 @@ class Pessoa:
         return f'{cls}  - olhos {cls.olhos}'
 
 class Homem(Pessoa):
-    pass
+    def cumprimentar(self):
+        cumprimentar_da_classe = super().cumprimentar()
+        return f'{cumprimentar_da_classe}. Aperto de mão'
+    # Aqui foi implementado a sobrescrita de método. Uma sobrecrita simples iria substituir por completo o método da classe pai,
+    # contudo foi usado uma lógica que acrescenta ao método da classe pai, o método 'super()' faz com que seja utilizado/buscado
+    # o méotod da classe pai.
 
 class Mutante(Pessoa):
     olhos = 3 # como esse atributo já existe na classe pai, há uma sobrescrita de atributo
@@ -32,7 +37,7 @@ if __name__ == '__main__':
     # nenhum problema com essa alteração de objeto.
 
     natalia = Pessoa(nome='Natália') # Poderia ser trocado o objeto, de Pessoa para Homem, aqui também
-    fernando = Pessoa(gabriel, natalia, nome='Fernando')
+    fernando = Homem(gabriel, natalia, nome='Fernando')
     print(Pessoa.cumprimentar(fernando))
     print(id(fernando))
     print(fernando.cumprimentar())
@@ -99,3 +104,7 @@ if __name__ == '__main__':
     print()
     print('Parte sobre sobrescrita de atributos')
     print(gabriel.olhos)
+
+    print()
+    print(gabriel.cumprimentar())
+    print(fernando.cumprimentar())
